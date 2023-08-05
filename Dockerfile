@@ -36,16 +36,16 @@ RUN wget https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-m
     && tar -xzf /opt/apache-maven-$MAVEN_VERSION-bin.tar.gz -C /opt \
     && rm -f /opt/apache-maven-$MAVEN_VERSION-bin.tar.gz
 
-ENV ENV="/etc/profile"
-RUN echo "alias ll=\"ls -alhtrF\"\nalias vi=vim\nservice --status-all" >> $ENV
+RUN touch /run/motd.dynamic.new && \
+    chown $user /run/motd.dynamic.new
 
-RUN mkdir -p $HOME/.m2 $HOME/GitHub && \
-    chown -R $user $HOME/.m2 $HOME/GitHub && \
-    chmod 755 -R $HOME/GitHub
+ENV ENV="/etc/profile"
+RUN echo "alias ll=\"ls -alhtrF\"\nalias vi=vim\ncat /run/motd.dynamic.new\nservice --status-all" >> $ENV
 
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
 
+# set the current user
 USER $user
 
 # Set the working directory

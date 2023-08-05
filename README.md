@@ -30,7 +30,7 @@ docker build -t java-dev-ubuntu .
 ```
 docker run --name java-dev-ubuntu-v3 -p 2200:22 -p 8080:8080 -v ${HOME}/.m2:/home/jeswins-dev/.m2 -v ${HOME}/Documents/GitHub:/home/jeswins-dev/GitHub -it -d java-dev-ubuntu
 ```
-***Note:** change just the username used in the path if it has been changed in Dockerfile; when modifying the mount points, Dockerfile must also be modified @line:42-44*
+***Note:** change just the username used in the path if it has been changed in Dockerfile*
 
 ### The container should be up and running.
 
@@ -40,6 +40,10 @@ docker run --name java-dev-ubuntu-v3 -p 2200:22 -p 8080:8080 -v ${HOME}/.m2:/hom
 ssh -vvv jeswins-dev@127.0.0.1 -p 2200
 ```
 *use the username configured if changed; **-vvv** preferred for debug*
+
+> make sure that the `.m2/` and and `GitHub/` folders are writable by the USER set in the environment
+
+> if not, execute `chown -R $USER $HOME/.m2 $HOME/GitHub` inside the container. Once the Jetbrains-Gateway session has ended, execute the command again in your local system
 
 ```
 gawk -i inplace '!/127.0.0.1/' ~/.ssh/known_hosts
