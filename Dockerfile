@@ -30,18 +30,18 @@ RUN mkdir -p $HOME/.ssh/log && \
 # setup maven
 ENV MAVEN_VERSION 3.9.4
 ENV MAVEN_HOME  /opt/apache-maven-${MAVEN_VERSION}
-# save for all users
-RUN echo "PATH=\"${MAVEN_HOME}/bin:${JAVA_HOME}/bin:${PATH}\"\n" \
-    "export MAVEN_HOME=\"${MAVEN_HOME}\"\n" \
-    "export JAVA_HOME=\"${JAVA_HOME}\"" >> /etc/environment
 RUN wget https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz -O /opt/apache-maven-$MAVEN_VERSION-bin.tar.gz -S \
     && tar -xzf /opt/apache-maven-$MAVEN_VERSION-bin.tar.gz -C /opt \
     && rm -f /opt/apache-maven-$MAVEN_VERSION-bin.tar.gz
 
-RUN touch /run/motd.dynamic.new && \
-    chown $user /run/motd.dynamic.new
+# save for all users
+RUN echo "PATH=\"${MAVEN_HOME}/bin:${JAVA_HOME}/bin:${PATH}\"\n" \
+    "export MAVEN_HOME=\"${MAVEN_HOME}\"\n" \
+    "export JAVA_HOME=\"${JAVA_HOME}\"" >> /etc/environment
 
-RUN echo "cat /run/motd.dynamic.new\nservice --status-all" >> /etc/profile
+RUN touch /run/motd.dynamic.new && \
+    chown $user /run/motd.dynamic.new && \
+    echo "cat /run/motd.dynamic.new\nservice --status-all" >> /etc/profile
 
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
