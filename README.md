@@ -56,3 +56,9 @@ gawk -i inplace '!/127.0.0.1/' ~/.ssh/known_hosts
 *clear known_hosts before starting a session into a new container; This is assuming your host keys are stored in **$HOME/.ssh***
 
 ### Once the container is up and running, launch `Jetbrains Gateway` and follow the steps given at [Connect and work with JetBrains Gateway](https://www.jetbrains.com/help/idea/remote-development-a.html#gateway)
+
+---
+
+<br>
+
+![Screenshot from 2023-08-05 18-09-17](https://github.com/Jeswin-8802/Containerized-Development-in-IntelliJ/assets/84562594/81c952fc-66c5-4494-bb51-e770c5b7e5c3)
