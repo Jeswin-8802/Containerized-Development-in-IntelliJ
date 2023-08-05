@@ -43,12 +43,16 @@ ssh -vvv jeswins-dev@127.0.0.1 -p 2200
 
 > make sure that the `.m2/` and and `GitHub/` folders are writable by the USER set in the environment
 
-> if not, execute `chown -R $USER $HOME/.m2 $HOME/GitHub` inside the container. Once the Jetbrains-Gateway session has ended, execute the command again in your local system
+> if not, execute `chown -R $USER $HOME/.m2 $HOME/GitHub` inside the container.
 
 ```
+// if you get the error
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// run
 gawk -i inplace '!/127.0.0.1/' ~/.ssh/known_hosts
 ```
-*clear known_hosts before starting a session into a new container; This is assuming your host keys are stored in $HOME/.ssh; **Ignore this step if container is already created***
+*clear known_hosts before starting a session into a new container; This is assuming your host keys are stored in **$HOME/.ssh***
 
-### Once the container is up and running, launch `Jetbrains Gateway` and follow the steps given https://www.jetbrains.com/help/idea/remote-development-a.html#gateway
-
+### Once the container is up and running, launch `Jetbrains Gateway` and follow the steps given at [Connect and work with JetBrains Gateway](https://www.jetbrains.com/help/idea/remote-development-a.html#gateway)
