@@ -61,4 +61,5 @@ gawk -i inplace '!/127.0.0.1/' ~/.ssh/known_hosts
 
 <br>
 
-![Screenshot from 2023-08-05 18-09-17](https://github.com/Jeswin-8802/Containerized-Development-in-IntelliJ/assets/84562594/81c952fc-66c5-4494-bb51-e770c5b7e5c3)
+![image](https://github.com/Jeswin-8802/Containerized-Development-in-IntelliJ/assets/84562594/2d93021b-f082-4f97-af12-7ba430dd16e9)
+
